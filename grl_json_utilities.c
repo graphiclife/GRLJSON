@@ -161,7 +161,6 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 							{
 								return NULL;
 							}
-
 						}
 						break;
 				}
