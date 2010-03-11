@@ -75,9 +75,8 @@ void grl_json_error ( struct grl_json_parse_context *context, const char *error 
 
 %%
 
-start:	/* empty */
-	|	value		{ context->result = $1; }
-	;
+start:	value		{ context->result = $1; }
+		;
 
 object: 
 		L_BRACE R_BRACE				{ $$ = grl_json_object_value( context, NULL ); }
