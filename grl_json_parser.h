@@ -42,6 +42,13 @@
 
 typedef enum
 {
+	grl_json_issue_code_none,
+	grl_json_issue_code_parse,
+	grl_json_issue_code_string
+} grl_json_issue_code;
+
+typedef enum
+{
 	grl_json_value_type_null,
 	grl_json_value_type_integer,
 	grl_json_value_type_float,
@@ -90,6 +97,17 @@ struct grl_json_pair_list
 	struct grl_json_pair_list	*next;
 };
 
+struct grl_json_issue
+{
+	grl_json_issue_code	code;
+};
+
+struct grl_json_issue_list
+{
+	struct grl_json_issue		*issue;
+	struct grl_json_issue_list	*next;
+};
+
 struct grl_json_alloc_table
 {
 	unsigned char	*memory;
@@ -109,7 +127,8 @@ struct grl_json_parse_context
 	const char							*buffer;
 	const char							*p;
 	const char							*s;
-	struct grl_json_alloc_table_list	*alloc_tables;
+	struct grl_json_alloc_table_list	*allocations;
+	struct grl_json_issue_list			*issues;
 	struct grl_json_value				*result;
 };
 
@@ -138,6 +157,9 @@ struct grl_json_value_list *grl_json_value_list_reverse (  struct grl_json_value
 struct grl_json_pair *grl_json_pair ( struct grl_json_parse_context *context, struct grl_json_string *key, struct grl_json_value *value );
 struct grl_json_pair_list *grl_json_pair_list ( struct grl_json_parse_context *context, struct grl_json_pair *pair, struct grl_json_pair_list *next );
 struct grl_json_pair_list *grl_json_pair_list_reverse ( struct grl_json_pair_list *pair_list );
+
+struct grl_json_issue *grl_json_issue ( struct grl_json_parse_context *context, grl_json_issue_code code );
+struct grl_json_issue_list *grl_json_issue_list ( struct grl_json_parse_context *context, struct grl_json_issue *issue, struct grl_json_issue_list *next );
 
 struct grl_json_alloc_table *grl_json_alloc_table ( size_t size );
 struct grl_json_alloc_table_list *grl_json_alloc_table_list ( struct grl_json_alloc_table *table, struct grl_json_alloc_table_list *next );

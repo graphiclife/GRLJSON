@@ -40,16 +40,15 @@ void grl_json_init ( struct grl_json_parse_context *context, const char *buffer,
 
 	context->buffer = context->p = buffer;
 	context->s = buffer + length;
-	context->alloc_tables = NULL;
+	context->allocations = NULL;
+	context->issues = NULL;
 	context->result = NULL;
 }
 
 void grl_json_close ( struct grl_json_parse_context *context )
 {
-	struct grl_json_alloc_table_list *current, *next;
-	
-	current = context->alloc_tables;
-	
+	struct grl_json_alloc_table_list *current = context->allocations, *next = NULL;
+		
 	while ( current )
 	{
 		next = current->next;
@@ -66,7 +65,7 @@ void grl_json_close ( struct grl_json_parse_context *context )
 
 void *grl_json_malloc ( struct grl_json_parse_context *context, size_t size )
 {
-	if ( context->alloc_tables == NULL || context->alloc_tables->table->left < size )
+	if ( context->allocations == NULL || context->allocations->table->left < size )
 	{
 		struct grl_json_alloc_table *table;
 		size_t						left, alloc = 0;
@@ -81,13 +80,13 @@ void *grl_json_malloc ( struct grl_json_parse_context *context, size_t size )
 		
 		table = grl_json_alloc_table( ( alloc < size ? size : alloc ) );
 				
-		context->alloc_tables = grl_json_alloc_table_list( table, context->alloc_tables );
+		context->allocations = grl_json_alloc_table_list( table, context->allocations );
 	}
 	
-	void *pointer = context->alloc_tables->table->pointer;
+	void *pointer = context->allocations->table->pointer;
 	
-	context->alloc_tables->table->pointer += size;
-	context->alloc_tables->table->left -= size;
+	context->allocations->table->pointer += size;
+	context->allocations->table->left -= size;
 		
 	return pointer;
 }
@@ -231,14 +230,33 @@ struct grl_json_pair_list *grl_json_pair_list_reverse ( struct grl_json_pair_lis
 	return current;
 }
 
+struct grl_json_issue *grl_json_issue ( struct grl_json_parse_context *context, grl_json_issue_code code )
+{
+	struct grl_json_issue *issue = (struct grl_json_issue *) grl_json_malloc( context, sizeof( struct grl_json_issue ) );
+	
+	issue->code = code;
+	
+	return issue;
+}
+
+struct grl_json_issue_list *grl_json_issue_list ( struct grl_json_parse_context *context, struct grl_json_issue *issue, struct grl_json_issue_list *next )
+{
+	struct grl_json_issue_list *issue_list = (struct grl_json_issue_list *) grl_json_malloc( context, sizeof( struct grl_json_issue_list ) );
+	
+	issue_list->issue = issue;
+	issue_list->next = next;
+	
+	return issue_list;
+}
+
 struct grl_json_alloc_table *grl_json_alloc_table ( size_t size )
 {
-	struct grl_json_alloc_table *alloc_table = (struct grl_json_alloc_table *) malloc( sizeof(struct grl_json_alloc_table) );
+	struct grl_json_alloc_table *allocation = (struct grl_json_alloc_table *) malloc( sizeof(struct grl_json_alloc_table) );
 	
-	alloc_table->memory = alloc_table->pointer = (unsigned char *) malloc( size );
-	alloc_table->left = size;
+	allocation->memory = allocation->pointer = (unsigned char *) malloc( size );
+	allocation->left = size;
 	
-	return alloc_table;
+	return allocation;
 }
 
 struct grl_json_alloc_table_list *grl_json_alloc_table_list ( struct grl_json_alloc_table *table, struct grl_json_alloc_table_list *next )

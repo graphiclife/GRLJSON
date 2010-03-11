@@ -101,6 +101,8 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 							}
 							else
 							{
+								context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+								
 								return NULL;
 							}
 						}
@@ -120,19 +122,39 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 								if ( ucs4_state == 0 )
 								{
 									if ( (ucs4_bytes == 2) && (ucs4 < 0x0080) )
+									{
+										context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+										
 										return NULL;
+									}
 									
 									if ( (ucs4_bytes == 3) && (ucs4 < 0x0800) )
+									{
+										context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+										
 										return NULL;
+									}
 									
 									if ( (ucs4_bytes == 4) && (ucs4 < 0x10000) )
+									{
+										context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+										
 										return NULL;
+									}
 									
 									if ( (ucs4_bytes > 4) )
+									{
+										context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+										
 										return NULL;
+									}
 									
 									if ( ( (ucs4 & 0xFFFFF800) == 0xD800 ) || (ucs4 > 0x10FFFF) )
+									{
+										context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+										
 										return NULL;
+									}
 									
 									if ( ucs4 > 0xFFFF )
 									{
@@ -159,6 +181,8 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 							}
 							else
 							{
+								context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+								
 								return NULL;
 							}
 						}
@@ -240,6 +264,8 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 				}
 				else
 				{
+					context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+					
 					return NULL;
 				}
 				
@@ -254,7 +280,14 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 				break;
 		}
 	}
-			
+	
+	if ( state != NORMAL )
+	{
+		context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+		
+		return NULL;
+	}
+	
 	json_string->characters = buffer;
 	json_string->length = p - buffer;
 	

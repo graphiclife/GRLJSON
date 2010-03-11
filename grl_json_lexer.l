@@ -63,7 +63,7 @@ int grl_json_lex ( YYSTYPE *lvalp, void *grl_scanner );
 	
 void grl_json_error ( struct grl_json_parse_context *context, const char *error )
 {
-	fprintf( stderr, "Error: '%s'\r\n", error );
+	context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_parse ), context->issues );
 }
 	
 #define grl_json_scanner context->scanner
