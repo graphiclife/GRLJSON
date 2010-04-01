@@ -1,9 +1,9 @@
 //
-//	GRLJSON.h
-//	GRLJSON
+//  GRLJSONCoder_Internal.h
+//  GRLJSON
 //
-//	Created by Måns Severin on 2010-03-09.
-//	Copyright 2010 Graphiclife. All rights reserved.
+//  Created by Måns Severin on 2010-04-01.
+//  Copyright 2010 Graphiclife. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person
 //	obtaining a copy of this software and associated documentation
@@ -27,21 +27,10 @@
 //	OTHER DEALINGS IN THE SOFTWARE.
 //	
 
-#import <Foundation/Foundation.h>
+#import "GRLJSONCoder.h"
 
-@protocol GRLJSONCoding;
+@interface GRLJSONCoder (Internal)
 
-@interface GRLJSON : NSObject
-{	
-@private
-	NSData	*_data;
-}
-
-+ (NSData *)serializeArray:(NSArray *)array;
-+ (NSData *)serializeDictionary:(NSDictionary *)dictionary;
-+ (NSData *)serializeObject:(id <GRLJSONCoding>)object;
-
-- (id)initWithData:(NSData *)data;
-- (id)parse:(NSError **)error;
+- (NSData *)serialize;
 
 @end

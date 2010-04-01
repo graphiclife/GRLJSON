@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <GRLJSON/GRLJSONCoding.h>
+@protocol GRLJSONCoding;
 
 typedef enum
 {

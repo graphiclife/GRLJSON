@@ -300,7 +300,7 @@ struct grl_json_string *grl_json_strdup ( struct grl_json_parse_context *context
 	struct grl_json_string	*json_string = (struct grl_json_string *) grl_json_malloc( context, sizeof(struct grl_json_string) );
 	unsigned short			*buffer = (unsigned short *) grl_json_malloc( context, sizeof(unsigned short) * length );
 	
-	memcpy( buffer, characters, length );
+	memcpy( buffer, characters, length * sizeof( unsigned short ) );
 	
 	json_string->characters = buffer;
 	json_string->length = length;

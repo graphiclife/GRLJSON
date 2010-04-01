@@ -29,6 +29,11 @@
 
 #import "GRLJSON.h"
 
+#import "GRLJSONCoder.h"
+#import "GRLJSONCoder_Internal.h"
+
+#import "GRLJSONCoding.h"
+
 #import "grl_json_parser.h"
 
 @interface GRLJSON (Private)
@@ -38,6 +43,48 @@
 @end
 
 @implementation GRLJSON
+
++ (NSData *)serializeArray:(NSArray *)array
+{
+	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
+	NSData			*data;
+	
+	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
+	[encoder encodeArray:array];
+	
+	data = [encoder serialize];
+	[encoder release];
+	
+	return data;
+}
+
++ (NSData *)serializeDictionary:(NSDictionary *)dictionary
+{
+	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
+	NSData			*data;
+	
+	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
+	[encoder encodeDictionary:dictionary];
+	
+	data = [encoder serialize];
+	[encoder release];
+	
+	return data;
+}
+
++ (NSData *)serializeObject:(id <GRLJSONCoding>)object
+{
+	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
+	NSData			*data;
+	
+	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
+	[encoder encodeObject:object];
+	
+	data = [encoder serialize];
+	[encoder release];
+	
+	return data;
+}
 
 - (id)initWithData:(NSData *)data
 {

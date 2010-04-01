@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360BCBB71164F121008FAD8A /* GRLJSONCoder_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */; };
 		366C20171145B87B00A1D0C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366C20161145B87B00A1D0C3 /* Foundation.framework */; };
 		366C20791145BAA000A1D0C3 /* grl_json_lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = 366C20731145BAA000A1D0C3 /* grl_json_lexer.l */; };
 		366C207A1145BAA000A1D0C3 /* grl_json_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 366C20741145BAA000A1D0C3 /* grl_json_parser.c */; };
@@ -17,14 +18,15 @@
 		366C20811145BAA800A1D0C3 /* GRLJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 366C207F1145BAA800A1D0C3 /* GRLJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		366C20821145BAA800A1D0C3 /* GRLJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C20801145BAA800A1D0C3 /* GRLJSON.m */; };
 		366C20841145BAAF00A1D0C3 /* GRLJSON_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 366C20831145BAAF00A1D0C3 /* GRLJSON_Prefix.pch */; };
-		367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC951163E2BD00B04133 /* GRLJSONCoding.h */; };
-		367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC971163E31700B04133 /* GRLJSONCoder.h */; };
+		367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC951163E2BD00B04133 /* GRLJSONCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC971163E31700B04133 /* GRLJSONCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		367EFC9A1163E31700B04133 /* GRLJSONCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 367EFC981163E31700B04133 /* GRLJSONCoder.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoder_Internal.h; sourceTree = "<group>"; };
 		366C20161145B87B00A1D0C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		366C20731145BAA000A1D0C3 /* grl_json_lexer.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = grl_json_lexer.l; sourceTree = "<group>"; };
 		366C20741145BAA000A1D0C3 /* grl_json_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = grl_json_parser.c; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				366C207F1145BAA800A1D0C3 /* GRLJSON.h */,
 				366C20801145BAA800A1D0C3 /* GRLJSON.m */,
 				367EFC951163E2BD00B04133 /* GRLJSONCoding.h */,
+				360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */,
 				367EFC971163E31700B04133 /* GRLJSONCoder.h */,
 				367EFC981163E31700B04133 /* GRLJSONCoder.m */,
 			);
@@ -138,6 +141,7 @@
 				366C20841145BAAF00A1D0C3 /* GRLJSON_Prefix.pch in Headers */,
 				367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */,
 				367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */,
+				360BCBB71164F121008FAD8A /* GRLJSONCoder_Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
