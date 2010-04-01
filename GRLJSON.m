@@ -60,14 +60,20 @@
 	id result = nil;
 	struct grl_json_parse_context context;
 	
-	grl_json_init( &context, [_data bytes], [_data length] );
+	grl_json_init( &context );
+	grl_json_load( &context, [_data bytes], [_data length] );
 	
 	if ( grl_json_parse( &context ) == 0 )
 	{
 		result = [self createJSONObjectFromValue:context.result];
 	}
+	else
+	{
+		
+	}
 	
 	grl_json_close( &context );
+	grl_json_destroy( &context );
 	
 	return result;
 }

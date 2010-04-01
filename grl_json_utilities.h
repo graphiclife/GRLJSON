@@ -32,6 +32,7 @@
 #ifndef GRL_JSON_UTILITIES
 #define GRL_JSON_UTILITIES
 
-struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *context, char *string, long length );
+struct grl_json_string *grl_json_quoted_utf8_strcpy ( struct grl_json_parse_context *context, char *string, long length );
+struct grl_json_string *grl_json_strdup ( struct grl_json_parse_context *context, unsigned short *characters, long length );
 
 #endif

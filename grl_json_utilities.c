@@ -30,8 +30,9 @@
 #include "grl_json_utilities.h"
 
 #include <stdlib.h>
+#include <string.h>
 
-struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *context, char *string, long length )
+struct grl_json_string *grl_json_quoted_utf8_strcpy ( struct grl_json_parse_context *context, char *string, long length )
 {
 	struct grl_json_string	*json_string = (struct grl_json_string *) grl_json_malloc( context, sizeof(struct grl_json_string) );
 	unsigned short			*buffer = (unsigned short *) grl_json_malloc( context, sizeof(unsigned short) * length );
@@ -290,6 +291,19 @@ struct grl_json_string *grl_json_quoted_strcpy ( struct grl_json_parse_context *
 	
 	json_string->characters = buffer;
 	json_string->length = p - buffer;
+	
+	return json_string;
+}
+
+struct grl_json_string *grl_json_strdup ( struct grl_json_parse_context *context, unsigned short *characters, long length )
+{
+	struct grl_json_string	*json_string = (struct grl_json_string *) grl_json_malloc( context, sizeof(struct grl_json_string) );
+	unsigned short			*buffer = (unsigned short *) grl_json_malloc( context, sizeof(unsigned short) * length );
+	
+	memcpy( buffer, characters, length );
+	
+	json_string->characters = buffer;
+	json_string->length = length;
 	
 	return json_string;
 }

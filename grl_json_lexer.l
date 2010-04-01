@@ -80,7 +80,7 @@ string		\"(\\.|[^"])*\"
 
 {integer}		{ yylval->integer_value = strtoll( yytext, NULL, 10 ); return INTEGER; }
 {floating}		{ yylval->float_value = strtod( yytext, NULL ); return FLOAT; }
-{string}		{ yylval->string_value = grl_json_quoted_strcpy( yyextra, yytext, yyleng ); return STRING; }
+{string}		{ yylval->string_value = grl_json_quoted_utf8_strcpy( yyextra, yytext, yyleng ); return STRING; }
 
 "null"			{ return NULLX; }
 "true"			{ yylval->boolean_value = 1; return BOOLEAN; }

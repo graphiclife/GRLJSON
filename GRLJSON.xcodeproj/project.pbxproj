@@ -17,6 +17,9 @@
 		366C20811145BAA800A1D0C3 /* GRLJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 366C207F1145BAA800A1D0C3 /* GRLJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		366C20821145BAA800A1D0C3 /* GRLJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C20801145BAA800A1D0C3 /* GRLJSON.m */; };
 		366C20841145BAAF00A1D0C3 /* GRLJSON_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 366C20831145BAAF00A1D0C3 /* GRLJSON_Prefix.pch */; };
+		367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC951163E2BD00B04133 /* GRLJSONCoding.h */; };
+		367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC971163E31700B04133 /* GRLJSONCoder.h */; };
+		367EFC9A1163E31700B04133 /* GRLJSONCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 367EFC981163E31700B04133 /* GRLJSONCoder.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		366C207F1145BAA800A1D0C3 /* GRLJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSON.h; sourceTree = "<group>"; };
 		366C20801145BAA800A1D0C3 /* GRLJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRLJSON.m; sourceTree = "<group>"; };
 		366C20831145BAAF00A1D0C3 /* GRLJSON_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSON_Prefix.pch; sourceTree = "<group>"; };
+		367EFC951163E2BD00B04133 /* GRLJSONCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoding.h; sourceTree = "<group>"; };
+		367EFC971163E31700B04133 /* GRLJSONCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoder.h; sourceTree = "<group>"; };
+		367EFC981163E31700B04133 /* GRLJSONCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRLJSONCoder.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* GRLJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GRLJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +97,9 @@
 			children = (
 				366C207F1145BAA800A1D0C3 /* GRLJSON.h */,
 				366C20801145BAA800A1D0C3 /* GRLJSON.m */,
+				367EFC951163E2BD00B04133 /* GRLJSONCoding.h */,
+				367EFC971163E31700B04133 /* GRLJSONCoder.h */,
+				367EFC981163E31700B04133 /* GRLJSONCoder.m */,
 			);
 			name = "Objective-C";
 			sourceTree = "<group>";
@@ -127,6 +136,8 @@
 				366C207E1145BAA000A1D0C3 /* grl_json_utilities.h in Headers */,
 				366C20811145BAA800A1D0C3 /* GRLJSON.h in Headers */,
 				366C20841145BAAF00A1D0C3 /* GRLJSON_Prefix.pch in Headers */,
+				367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */,
+				367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +202,7 @@
 				366C207C1145BAA000A1D0C3 /* grl_json_parser.y in Sources */,
 				366C207D1145BAA000A1D0C3 /* grl_json_utilities.c in Sources */,
 				366C20821145BAA800A1D0C3 /* GRLJSON.m in Sources */,
+				367EFC9A1163E31700B04133 /* GRLJSONCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,22 +33,34 @@
 #include <string.h>
 #include <stdlib.h>
 
-void grl_json_init ( struct grl_json_parse_context *context, const char *buffer, long length )
+void grl_json_init ( struct grl_json_parse_context *context )
 {
-	grl_json_lex_init( &(context->scanner) );
-	grl_json_set_extra( context, context->scanner );
-
-	context->buffer = context->p = buffer;
-	context->s = buffer + length;
+	context->buffer = NULL;
+	context->p = NULL;
+	context->s = NULL;
 	context->allocations = NULL;
 	context->issues = NULL;
 	context->result = NULL;
 }
 
+void grl_json_load ( struct grl_json_parse_context *context, const char *buffer, long length )
+{
+	grl_json_lex_init( &(context->scanner) );
+	grl_json_set_extra( context, context->scanner );
+	
+	context->buffer = context->p = buffer;
+	context->s = buffer + length;
+}
+
 void grl_json_close ( struct grl_json_parse_context *context )
 {
+	grl_json_lex_destroy( context->scanner );
+}
+
+void grl_json_destroy ( struct grl_json_parse_context *context )
+{
 	struct grl_json_alloc_table_list *current = context->allocations, *next = NULL;
-		
+	
 	while ( current )
 	{
 		next = current->next;
@@ -59,8 +71,6 @@ void grl_json_close ( struct grl_json_parse_context *context )
 		
 		current = next;
 	}
-	
-	grl_json_lex_destroy( context->scanner );
 }
 
 void *grl_json_malloc ( struct grl_json_parse_context *context, size_t size )

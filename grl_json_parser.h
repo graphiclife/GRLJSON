@@ -138,8 +138,10 @@ void grl_json_set_extra ( struct grl_json_parse_context *context, void *scanner 
 
 int grl_json_parse ( struct grl_json_parse_context *context );
 
-void grl_json_init ( struct grl_json_parse_context *context, const char *buffer, long length );
+void grl_json_init ( struct grl_json_parse_context *context );
+void grl_json_load ( struct grl_json_parse_context *context, const char *buffer, long length );
 void grl_json_close ( struct grl_json_parse_context *context );
+void grl_json_destroy ( struct grl_json_parse_context *context );
 
 void *grl_json_malloc ( struct grl_json_parse_context *context, size_t size );
 

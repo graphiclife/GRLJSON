@@ -1,9 +1,9 @@
 //
-//	GRLJSON_Prefix.pch
-//	GRLJSON
+//  GRLJSONCoding.h
+//  GRLJSON
 //
-//	Created by Måns Severin on 2010-03-09.
-//	Copyright 2010 Graphiclife. All rights reserved.
+//  Created by Måns Severin on 2010-03-31.
+//  Copyright 2010 Graphiclife. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person
 //	obtaining a copy of this software and associated documentation
@@ -27,6 +27,12 @@
 //	OTHER DEALINGS IN THE SOFTWARE.
 //	
 
-#ifdef __OBJC__
-# import <Foundation/Foundation.h>
-#endif
+#import <Foundation/Foundation.h>
+
+@class GRLJSONCoder;
+
+@protocol GRLJSONCoding
+
+- (void)encodeWithJSONCoder:(GRLJSONCoder *)encoder;
+
+@end
