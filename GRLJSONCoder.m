@@ -170,6 +170,11 @@
 
 - (void)encodeNumber:(NSNumber *)number
 {
+	if ( number == nil )
+	{
+		[self encodeNull]; return;
+	}
+	
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
 	
@@ -227,6 +232,11 @@
 
 - (void)encodeNumber:(NSNumber *)number forKey:(NSString *)key
 {
+	if ( number == nil )
+	{
+		[self encodeNullForKey:key]; return;
+	}
+	
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
 	unichar							*keyc = [self copyCharactersOfString:key];
@@ -287,6 +297,11 @@
 
 - (void)encodeString:(NSString *)string
 {
+	if ( string == nil )
+	{
+		[self encodeNull]; return;
+	}
+	
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
 	unichar							*c = [self copyCharactersOfString:string];
@@ -311,6 +326,11 @@
 
 - (void)encodeString:(NSString *)string forKey:(NSString *)key
 {
+	if ( string == nil )
+	{
+		[self encodeNullForKey:key]; return;
+	}
+	
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
 	unichar							*keyc = [self copyCharactersOfString:key];
@@ -337,6 +357,11 @@
 
 - (void)encodeObject:(id <GRLJSONCoding>)object
 {
+	if ( object == nil )
+	{
+		[self encodeNull]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
@@ -362,6 +387,11 @@
 
 - (void)encodeObject:(id <GRLJSONCoding>)object forKey:(NSString *)key
 {
+	if ( object == nil )
+	{
+		[self encodeNullForKey:key]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
@@ -390,6 +420,11 @@
 
 - (void)encodeArray:(NSArray *)array
 {
+	if ( array == nil )
+	{
+		[self encodeNull]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
@@ -450,6 +485,11 @@
 
 - (void)encodeArray:(NSArray *)array forKey:(NSString *)key
 {
+	if ( array == nil )
+	{
+		[self encodeNullForKey:key]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
@@ -513,6 +553,11 @@
 
 - (void)encodeDictionary:(NSDictionary *)dictionary
 {
+	if ( dictionary == nil )
+	{
+		[self encodeNull]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
@@ -576,6 +621,11 @@
 
 - (void)encodeDictionary:(NSDictionary *)dictionary forKey:(NSString *)key
 {
+	if ( dictionary == nil )
+	{
+		[self encodeNullForKey:key]; return;
+	}
+	
 	GRLJSONCoder					*coder = [[GRLJSONCoder alloc] init];
 	struct grl_json_parse_context	*ctx = (struct grl_json_parse_context *) _context;
 	struct grl_json_value			*value = NULL;
