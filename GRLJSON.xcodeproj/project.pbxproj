@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		360BCBB71164F121008FAD8A /* GRLJSONCoder_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */; };
+		361403FC119966F50047888A /* GRLJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 361403FA119966F50047888A /* GRLJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		361403FD119966F50047888A /* GRLJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403FB119966F50047888A /* GRLJSONValueTransformer.m */; };
+		361403FF119966F50047888A /* GRLJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403FB119966F50047888A /* GRLJSONValueTransformer.m */; };
 		366C20171145B87B00A1D0C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366C20161145B87B00A1D0C3 /* Foundation.framework */; };
 		366C20791145BAA000A1D0C3 /* grl_json_lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = 366C20731145BAA000A1D0C3 /* grl_json_lexer.l */; };
 		366C207A1145BAA000A1D0C3 /* grl_json_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 366C20741145BAA000A1D0C3 /* grl_json_parser.c */; };
@@ -21,12 +24,21 @@
 		367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC951163E2BD00B04133 /* GRLJSONCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 367EFC971163E31700B04133 /* GRLJSONCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		367EFC9A1163E31700B04133 /* GRLJSONCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 367EFC981163E31700B04133 /* GRLJSONCoder.m */; };
+		36E08C4A11734BC500A3BC48 /* grl_json_lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = 366C20731145BAA000A1D0C3 /* grl_json_lexer.l */; };
+		36E08C4B11734BC500A3BC48 /* grl_json_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 366C20741145BAA000A1D0C3 /* grl_json_parser.c */; };
+		36E08C4C11734BC500A3BC48 /* grl_json_parser.y in Sources */ = {isa = PBXBuildFile; fileRef = 366C20761145BAA000A1D0C3 /* grl_json_parser.y */; };
+		36E08C4D11734BC500A3BC48 /* grl_json_utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 366C20771145BAA000A1D0C3 /* grl_json_utilities.c */; };
+		36E08C4E11734BC500A3BC48 /* GRLJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C20801145BAA800A1D0C3 /* GRLJSON.m */; };
+		36E08C4F11734BC500A3BC48 /* GRLJSONCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 367EFC981163E31700B04133 /* GRLJSONCoder.m */; };
+		36E08CD311734BE300A3BC48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E08CD211734BE300A3BC48 /* Foundation.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoder_Internal.h; sourceTree = "<group>"; };
+		361403FA119966F50047888A /* GRLJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONValueTransformer.h; sourceTree = "<group>"; };
+		361403FB119966F50047888A /* GRLJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRLJSONValueTransformer.m; sourceTree = "<group>"; };
 		366C20161145B87B00A1D0C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		366C20731145BAA000A1D0C3 /* grl_json_lexer.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = grl_json_lexer.l; sourceTree = "<group>"; };
 		366C20741145BAA000A1D0C3 /* grl_json_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = grl_json_parser.c; sourceTree = "<group>"; };
@@ -40,11 +52,21 @@
 		367EFC951163E2BD00B04133 /* GRLJSONCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoding.h; sourceTree = "<group>"; };
 		367EFC971163E31700B04133 /* GRLJSONCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRLJSONCoder.h; sourceTree = "<group>"; };
 		367EFC981163E31700B04133 /* GRLJSONCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRLJSONCoder.m; sourceTree = "<group>"; };
+		36E08C3611734AC200A3BC48 /* libGRLJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGRLJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		36E08CD211734BE300A3BC48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* GRLJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GRLJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		36E08C3411734AC200A3BC48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E08CD311734BE300A3BC48 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -60,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5B0486A6940098B216 /* GRLJSON.framework */,
+				36E08C3611734AC200A3BC48 /* libGRLJSON.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +103,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				366C20161145B87B00A1D0C3 /* Foundation.framework */,
+				36E08CD011734BCF00A3BC48 /* Mac OS X */,
+				36E08CD111734BD500A3BC48 /* iPhone OS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,6 +127,8 @@
 				360BCBB61164F121008FAD8A /* GRLJSONCoder_Internal.h */,
 				367EFC971163E31700B04133 /* GRLJSONCoder.h */,
 				367EFC981163E31700B04133 /* GRLJSONCoder.m */,
+				361403FA119966F50047888A /* GRLJSONValueTransformer.h */,
+				361403FB119966F50047888A /* GRLJSONValueTransformer.m */,
 			);
 			name = "Objective-C";
 			sourceTree = "<group>";
@@ -128,9 +154,32 @@
 			name = C;
 			sourceTree = "<group>";
 		};
+		36E08CD011734BCF00A3BC48 /* Mac OS X */ = {
+			isa = PBXGroup;
+			children = (
+				366C20161145B87B00A1D0C3 /* Foundation.framework */,
+			);
+			name = "Mac OS X";
+			sourceTree = "<group>";
+		};
+		36E08CD111734BD500A3BC48 /* iPhone OS */ = {
+			isa = PBXGroup;
+			children = (
+				36E08CD211734BE300A3BC48 /* Foundation.framework */,
+			);
+			name = "iPhone OS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		36E08C3211734AC200A3BC48 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF500486A6940098B216 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,15 +191,33 @@
 				367EFC961163E2BD00B04133 /* GRLJSONCoding.h in Headers */,
 				367EFC991163E31700B04133 /* GRLJSONCoder.h in Headers */,
 				360BCBB71164F121008FAD8A /* GRLJSONCoder_Internal.h in Headers */,
+				361403FC119966F50047888A /* GRLJSONValueTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8DC2EF4F0486A6940098B216 /* GRLJSON */ = {
+		36E08C3511734AC200A3BC48 /* GRLJSON iPhone OS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "GRLJSON" */;
+			buildConfigurationList = 36E08C3F11734B0200A3BC48 /* Build configuration list for PBXNativeTarget "GRLJSON iPhone OS" */;
+			buildPhases = (
+				36E08C3211734AC200A3BC48 /* Headers */,
+				36E08C3311734AC200A3BC48 /* Sources */,
+				36E08C3411734AC200A3BC48 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GRLJSON iPhone OS";
+			productName = "GRLJSON iPhone OS";
+			productReference = 36E08C3611734AC200A3BC48 /* libGRLJSON.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8DC2EF4F0486A6940098B216 /* GRLJSON Mac OS X */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "GRLJSON Mac OS X" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
@@ -161,7 +228,7 @@
 			);
 			dependencies = (
 			);
-			name = GRLJSON;
+			name = "GRLJSON Mac OS X";
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = GRLJSON_Mac_OS_X;
 			productReference = 8DC2EF5B0486A6940098B216 /* GRLJSON.framework */;
@@ -180,7 +247,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* GRLJSON */,
+				8DC2EF4F0486A6940098B216 /* GRLJSON Mac OS X */,
+				36E08C3511734AC200A3BC48 /* GRLJSON iPhone OS */,
 			);
 		};
 /* End PBXProject section */
@@ -197,6 +265,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		36E08C3311734AC200A3BC48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E08C4A11734BC500A3BC48 /* grl_json_lexer.l in Sources */,
+				36E08C4B11734BC500A3BC48 /* grl_json_parser.c in Sources */,
+				36E08C4C11734BC500A3BC48 /* grl_json_parser.y in Sources */,
+				36E08C4D11734BC500A3BC48 /* grl_json_utilities.c in Sources */,
+				36E08C4E11734BC500A3BC48 /* GRLJSON.m in Sources */,
+				36E08C4F11734BC500A3BC48 /* GRLJSONCoder.m in Sources */,
+				361403FF119966F50047888A /* GRLJSONValueTransformer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +289,7 @@
 				366C207D1145BAA000A1D0C3 /* grl_json_utilities.c in Sources */,
 				366C20821145BAA800A1D0C3 /* GRLJSON.m in Sources */,
 				367EFC9A1163E31700B04133 /* GRLJSONCoder.m in Sources */,
+				361403FD119966F50047888A /* GRLJSONValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +322,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GRLJSON_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = GRLJSON;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -257,7 +340,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GRLJSON_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = GRLJSON;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -273,7 +356,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -285,14 +368,47 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		36E08C3711734AC300A3BC48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GRLJSON_Prefix.pch;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				PRODUCT_NAME = GRLJSON;
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		36E08C3811734AC300A3BC48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GRLJSON_Prefix.pch;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				PRODUCT_NAME = GRLJSON;
+				SDKROOT = iphoneos3.1.3;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "GRLJSON" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "GRLJSON Mac OS X" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
@@ -306,6 +422,15 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36E08C3F11734B0200A3BC48 /* Build configuration list for PBXNativeTarget "GRLJSON iPhone OS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36E08C3711734AC300A3BC48 /* Debug */,
+				36E08C3811734AC300A3BC48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

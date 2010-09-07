@@ -31,6 +31,6 @@
 
 @interface GRLJSONCoder (Internal)
 
-- (NSData *)serialize;
+- (NSData *)serializeByTidying:(BOOL)tidy;
 
 @end

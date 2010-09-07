@@ -229,6 +229,12 @@ struct grl_json_string *grl_json_quoted_utf8_strcpy ( struct grl_json_parse_cont
 					case 'u':
 						shift = 12; ucs2 = 0; state = UNICODE;
 						break;
+						
+					default:
+						context->issues = grl_json_issue_list( context, grl_json_issue( context, grl_json_issue_code_string ), context->issues );
+						
+						state = NORMAL;
+						break;
 					
 				}
 				break;

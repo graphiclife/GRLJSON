@@ -33,18 +33,39 @@
 #import "GRLJSONCoder_Internal.h"
 
 #import "GRLJSONCoding.h"
+#import "GRLJSONValueTransformer.h"
 
 #import "grl_json_parser.h"
 
 @interface GRLJSON (Private)
 
-- (id)createJSONObjectFromValue:(struct grl_json_value *)value;
++ (id)createJSONObjectFromValue:(struct grl_json_value *)value preserveNull:(BOOL)preserveNull;
 
 @end
 
 @implementation GRLJSON
 
++ (void)init
+{
+	[GRLJSONValueTransformer self];
+}
+
 + (NSData *)serializeArray:(NSArray *)array
+{
+	return [self serializeArray:array tidy:NO];
+}
+
++ (NSData *)serializeDictionary:(NSDictionary *)dictionary
+{
+	return [self serializeDictionary:dictionary tidy:NO];
+}
+
++ (NSData *)serializeObject:(id <GRLJSONCoding>)object
+{
+	return [self serializeObject:object tidy:NO];
+}
+
++ (NSData *)serializeArray:(NSArray *)array tidy:(BOOL)tidy
 {
 	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
 	NSData			*data;
@@ -52,13 +73,13 @@
 	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
 	[encoder encodeArray:array];
 	
-	data = [encoder serialize];
+	data = [encoder serializeByTidying:tidy];
 	[encoder release];
 	
 	return data;
 }
 
-+ (NSData *)serializeDictionary:(NSDictionary *)dictionary
++ (NSData *)serializeDictionary:(NSDictionary *)dictionary tidy:(BOOL)tidy
 {
 	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
 	NSData			*data;
@@ -66,13 +87,13 @@
 	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
 	[encoder encodeDictionary:dictionary];
 	
-	data = [encoder serialize];
+	data = [encoder serializeByTidying:tidy];
 	[encoder release];
 	
 	return data;
 }
 
-+ (NSData *)serializeObject:(id <GRLJSONCoding>)object
++ (NSData *)serializeObject:(id <GRLJSONCoding>)object tidy:(BOOL)tidy
 {
 	GRLJSONCoder	*encoder = [[GRLJSONCoder alloc] init];
 	NSData			*data;
@@ -80,39 +101,28 @@
 	[encoder encodeRootObject:kGRLJSONObjectTypeSingle];
 	[encoder encodeObject:object];
 	
-	data = [encoder serialize];
+	data = [encoder serializeByTidying:tidy];
 	[encoder release];
 	
 	return data;
 }
 
-- (id)initWithData:(NSData *)data
++ (id)deserializeData:(NSData *)data error:(NSError **)error
 {
-	if ( self = [super init] )
-	{
-		_data = [data retain];
-	}
-	
-	return self;
+	return [self deserializeData:data preserveNulls:NO error:error];
 }
 
-- (void)dealloc
-{
-	[_data release]; _data = nil;
-	[super dealloc];
-}
-
-- (id)parse:(NSError **)error
++ (id)deserializeData:(NSData *)data preserveNulls:(BOOL)preserveNulls error:(NSError **)error
 {
 	id result = nil;
 	struct grl_json_parse_context context;
 	
 	grl_json_init( &context );
-	grl_json_load( &context, [_data bytes], [_data length] );
+	grl_json_load( &context, [data bytes], [data length] );
 	
 	if ( grl_json_parse( &context ) == 0 )
 	{
-		result = [self createJSONObjectFromValue:context.result];
+		result = [self createJSONObjectFromValue:context.result preserveNull:preserveNulls];
 	}
 	else
 	{
@@ -125,17 +135,18 @@
 	return result;
 }
 
-- (id)createJSONObjectFromValue:(struct grl_json_value *)value
++ (id)createJSONObjectFromValue:(struct grl_json_value *)value preserveNull:(BOOL)preserveNull
 {
 	NSMutableArray				*array;
 	NSMutableDictionary			*dictionary;
 	struct grl_json_value_list	*vlist;
 	struct grl_json_pair_list	*plist;
+	id							json;
 	
 	switch ( value->type )
 	{
 		case grl_json_value_type_null:
-			return [NSNull null];
+			return ( preserveNull ? [NSNull null] : nil );
 			
 		case grl_json_value_type_integer:
 			return [NSNumber numberWithLongLong:value->value.integer_value];
@@ -154,7 +165,12 @@
 			
 			for ( vlist = value->value.array_value ; vlist ; vlist = vlist->next )
 			{
-				[array addObject:[self createJSONObjectFromValue:vlist->value]];
+				json = [self createJSONObjectFromValue:vlist->value preserveNull:preserveNull];
+				
+				if ( json )
+				{
+					[array addObject:json];
+				}
 			}
 			
 			return array;
@@ -164,8 +180,12 @@
 			
 			for ( plist = value->value.object_value ; plist ; plist = plist->next )
 			{
-				[dictionary setObject:[self createJSONObjectFromValue:plist->pair->value]
-							   forKey:[NSString stringWithCharacters:plist->pair->key->characters length:plist->pair->key->length]];
+				json = [self createJSONObjectFromValue:plist->pair->value preserveNull:preserveNull];
+				
+				if ( json )
+				{
+					[dictionary setObject:json forKey:[NSString stringWithCharacters:plist->pair->key->characters length:plist->pair->key->length]];
+				}
 			}
 			
 			return dictionary;

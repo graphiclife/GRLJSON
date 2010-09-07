@@ -33,15 +33,19 @@
 
 @interface GRLJSON : NSObject
 {	
-@private
-	NSData	*_data;
 }
+
++ (void)init;
 
 + (NSData *)serializeArray:(NSArray *)array;
 + (NSData *)serializeDictionary:(NSDictionary *)dictionary;
 + (NSData *)serializeObject:(id <GRLJSONCoding>)object;
 
-- (id)initWithData:(NSData *)data;
-- (id)parse:(NSError **)error;
++ (NSData *)serializeArray:(NSArray *)array tidy:(BOOL)tidy;
++ (NSData *)serializeDictionary:(NSDictionary *)dictionary tidy:(BOOL)tidy;
++ (NSData *)serializeObject:(id <GRLJSONCoding>)object tidy:(BOOL)tidy;
+
++ (id)deserializeData:(NSData *)data error:(NSError **)error;
++ (id)deserializeData:(NSData *)data preserveNulls:(BOOL)preserveNulls error:(NSError **)error;
 
 @end

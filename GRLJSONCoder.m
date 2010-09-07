@@ -40,8 +40,8 @@
 
 - (struct grl_json_value *)result;
 - (unichar *)copyCharactersOfString:(NSString *)string;
-- (NSData *)serializeJSONValue:(struct grl_json_value *)value;
-- (NSData *)serializeString:(struct grl_json_string *)string;
+- (NSData *)serializeJSONValue:(struct grl_json_value *)value tidy:(BOOL)tidy;
+- (NSData *)serializeJSONString:(struct grl_json_string *)string;
 
 @end
 
@@ -709,12 +709,12 @@
 	return buffer;
 }
 
-- (NSData *)serialize
+- (NSData *)serializeByTidying:(BOOL)tidy
 {
-	return [self serializeJSONValue:[self result]];
+	return [self serializeJSONValue:[self result] tidy:tidy];
 }
 
-- (NSData *)serializeJSONValue:(struct grl_json_value *)value
+- (NSData *)serializeJSONValue:(struct grl_json_value *)value tidy:(BOOL)tidy
 {
 	NSMutableData				*data = [NSMutableData data];
 	NSAutoreleasePool			*pool;
@@ -745,7 +745,7 @@
 			break;
 			
 		case grl_json_value_type_string:
-			[data appendData:[self serializeString:value->value.string_value]];
+			[data appendData:[self serializeJSONString:value->value.string_value]];
 			break;
 			
 		case grl_json_value_type_array:
@@ -753,7 +753,7 @@
 			
 			for ( vlist = value->value.array_value ; vlist ; vlist = vlist->next )
 			{
-				[data appendData:[self serializeJSONValue:vlist->value]];
+				[data appendData:[self serializeJSONValue:vlist->value tidy:tidy]];
 				
 				if ( vlist->next )
 				{
@@ -767,17 +767,34 @@
 		case grl_json_value_type_object:
 			[data appendBytes:"{" length:1];
 			
+			if ( tidy )
+				[data appendBytes:"\r\n" length:2];
+			
 			for ( plist = value->value.object_value ; plist ; plist = plist->next )
 			{
-				[data appendData:[self serializeString:plist->pair->key]];
+				[data appendData:[self serializeJSONString:plist->pair->key]];
+				
+				if ( tidy )
+					[data appendBytes:" " length:1];
+				
 				[data appendBytes:":" length:1];
-				[data appendData:[self serializeJSONValue:plist->pair->value]];
+				
+				if ( tidy )
+					[data appendBytes:" " length:1];
+				
+				[data appendData:[self serializeJSONValue:plist->pair->value tidy:tidy]];
 				
 				if ( plist->next )
 				{
 					[data appendBytes:"," length:1];
+					
+					if ( tidy )
+						[data appendBytes:"\r\n" length:2];
 				}
 			}
+			
+			if ( tidy )
+				[data appendBytes:"\r\n" length:2];
 			
 			[data appendBytes:"}" length:1];
 			break;
@@ -788,7 +805,7 @@
 	return data;
 }
 
-- (NSData *)serializeString:(struct grl_json_string *)string
+- (NSData *)serializeJSONString:(struct grl_json_string *)string
 {
 	NSMutableData	*sdata = [NSMutableData data];
 	unsigned short	c;
